@@ -83,21 +83,21 @@ def real(N, graph_name, connected=True):
 
         if graph_name == "airfoil":
             G = graphs.Airfoil()
-            G = graphs.Graph(W=G.W[0:N, 0:N], coords=G.coords[0:N, :])
+            G = graphs.Graph(G.W[0:N, 0:N], coords=G.coords[0:N, :])
 
         elif graph_name == "yeast":
             W = download_yeast()
-            G = graphs.Graph(W=W[0:N, 0:N])
+            G = graphs.Graph(W[0:N, 0:N])
 
         elif graph_name == "minnesota":
             G = graphs.Minnesota()
             W = G.W.astype(np.float)
-            G = graphs.Graph(W=W[0:N, 0:N], coords=G.coords[0:N, :])
+            G = graphs.Graph(W[0:N, 0:N], coords=G.coords[0:N, :])
 
         elif graph_name == "bunny":
             G = graphs.Bunny()
             W = G.W.astype(np.float)
-            G = graphs.Graph(W=W[0:N, 0:N], coords=G.coords[0:N, :])
+            G = graphs.Graph(W[0:N, 0:N], coords=G.coords[0:N, :])
 
         if connected == False or G.is_connected():
             break
@@ -109,7 +109,7 @@ def real(N, graph_name, connected=True):
     if not hasattr(G, 'coords'): 
         try:
             import networkx as nx
-            graph = nx.from_scipy_sparse_matrix(G.W)
+            graph = nx.convert_matrix.from_scipy_sparse_array(G.W)
             pos = nx.nx_agraph.graphviz_layout(graph, prog='neato')  
             G.set_coordinates(np.array(list(pos.values()))) 
         except ImportError:

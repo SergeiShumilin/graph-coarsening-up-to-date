@@ -3,7 +3,7 @@ import pygsp as gsp
 
 def to_networkx():
     import networkx as nx
-    return nx.from_scipy_sparse_matrix(G.W)
+    return nx.convert_matrix.from_scipy_sparse_array(G.W)
     
 def get_neighbors(G, i):
     return G.A[i,:].indices
@@ -34,9 +34,9 @@ def get_giant_component(G):
 
     if not hasattr(G, 'coords'):
         # print(W_g.shape)
-        G_g = gsp.graphs.Graph(W=W_g)        
+        G_g = gsp.graphs.Graph(W_g)
     else:
-        G_g = gsp.graphs.Graph(W=W_g, coords=coords_g)
+        G_g = gsp.graphs.Graph(W_g, coords=coords_g)
 
     
     return (G_g, keep)
