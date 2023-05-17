@@ -1,4 +1,4 @@
-# graph-coarsening package
+# FORK OF graph-coarsening package INTENDED TO GET UP-TO-DATE CODE COMPATIBLE WITH NETWORKX, MATPLOTLIB, NUMPY, SCIPY
 
 Multilevel graph coarsening algorithm with spectral and cut guarantees.
 
